@@ -5,9 +5,9 @@ using UnityEngine;
 public class LifeControl : MonoBehaviour
 {
     [SerializeField]
-    private int maxLife;
-    private int life;
-    public int Life { get { return life; } }
+    private float maxLife = 1;
+    private float life;
+    public float Life { get { return life; } }
 
     // Start is called before the first frame update
     void Start()
