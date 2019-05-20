@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Text timeText;
+    private float time;
     void Start()
     {
-        
+        time = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        time += Time.deltaTime;
+        timeText.text = $"Time:{Mathf.Floor(time)}";
     }
 }
