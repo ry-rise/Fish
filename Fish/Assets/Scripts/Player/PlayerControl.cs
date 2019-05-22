@@ -43,4 +43,10 @@ public class PlayerControl : MonoBehaviour
             rb.velocity *= 0.95f;
         }
     }
+
+    private void SizeChanger()
+    {
+        //ゲームマネージャーからレベルを見る
+        Vector2 size = transform.localScale;
+    }
 }

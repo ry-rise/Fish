@@ -12,6 +12,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        SizeChanger();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -22,4 +23,9 @@ abstract public class BaseEnemyAI : MonoBehaviour
     }
 
     abstract protected void Move();
+
+    private void SizeChanger()
+    {
+        transform.localScale = new Vector2(1, 1) * data.Level;
+    }
 }
