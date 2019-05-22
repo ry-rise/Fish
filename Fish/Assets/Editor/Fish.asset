@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e049dcd0ce1ca434889ca111249f93d1, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  fishName: 
-  level: 0
-  speed: 0
+  fishName: "\u65751"
+  level: 1
+  speed: 1
   type: 0
