@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LifeControl : MonoBehaviour
 {
-    [SerializeField] private Text lifeText;
+    [SerializeField] private Text lifeText = null;
     [SerializeField] private float maxLife = 1;
     private float life;
     public float Life { get { return life; } }
