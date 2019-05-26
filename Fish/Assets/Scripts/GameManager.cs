@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private float maxLife = 1;
     private float life;
     public float Life { get { return life; } }
+    [SerializeField]
+    private float damage = 1;
 
     //レベル＆サイズ
     [SerializeField]
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     private float multipleB = 15;
     private float currentExp;
     private int currentLevel = 1;
+    public int CurrentLevel { get { return currentLevel; } }
 
     public int NextExp
     {
@@ -54,6 +57,16 @@ public class GameManager : MonoBehaviour
             ++currentLevel;
             currentExp -= NextExp;
         }
+    }
+
+    public void Damage()
+    {
+        life -= damage * Time.deltaTime;
+    }
+
+    public void Eater(int level)
+    {
+        currentExp += level * level;
     }
 
     void Start()

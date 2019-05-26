@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class FishHitter : MonoBehaviour
 {
-    public List<GameObject> Fish { get; private set; }
+    public List<BaseEnemyAI> EatFish { get; private set; }
+    public List<BaseEnemyAI> DamageFish { get; private set; }
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        Fish = new List<GameObject>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        EatFish = new List<BaseEnemyAI>();
+        DamageFish = new List<BaseEnemyAI>();
     }
 
     // Update is called once per frame
@@ -22,9 +26,19 @@ public class FishHitter : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fish")
         {
-            if (-1 == Fish.IndexOf(collision.gameObject))
+            int fishALev = collision.gameObject.GetComponent<BaseEnemyAI>().Data.Level;
+            int fishBLev = gameManager.CurrentLevel;
+            if (-1 == DamageFish.IndexOf(collision.gameObject.GetComponent<BaseEnemyAI>()))
             {
-                Fish.Add(collision.gameObject);
+                if (fishALev > fishBLev)
+                {
+                    EatFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
+                }
+                else if (fishALev < fishBLev)
+                {
+                    DamageFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
+
+                }
             }
         }
     }
@@ -33,10 +47,38 @@ public class FishHitter : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fish")
         {
-            if (-1 != Fish.IndexOf(collision.gameObject))
+            int fishALev = collision.gameObject.GetComponent<BaseEnemyAI>().Data.Level;
+            int fishBLev = gameManager.CurrentLevel;
+            if (-1 != DamageFish.IndexOf(collision.gameObject.GetComponent<BaseEnemyAI>()))
             {
-                Fish.Remove(collision.gameObject);
+                if (fishALev > fishBLev)
+                {
+                    EatFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
+                }
+                else if (fishALev < fishBLev)
+                {
+                    DamageFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
+
+                }
             }
+        }
+    }
+
+    private void Eater()
+    {
+        foreach (BaseEnemyAI it in EatFish)
+        {
+            gameManager.Eater(it.Data.Level);
+            Destroy(it.gameObject);
+        }
+        EatFish.Clear();
+    }
+
+    private void Damage()
+    {
+        foreach (BaseEnemyAI it in DamageFish)
+        {
+            gameManager.Damage();
         }
     }
 }

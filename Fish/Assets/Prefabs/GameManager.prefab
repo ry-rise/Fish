@@ -43,3 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fc32bc47cc5a04288298deb720aa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeText: {fileID: 0}
+  lifeText: {fileID: 0}
+  maxLife: 3
+  damage: 1
+  levelText: {fileID: 0}
+  firstLevelUpSize: 10
+  multipleA: 1.1
+  multipleB: 15

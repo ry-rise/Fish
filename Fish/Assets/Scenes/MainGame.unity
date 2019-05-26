@@ -181,19 +181,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
         type: 3}
-      propertyPath: firstSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
-        type: 3}
       propertyPath: timeText
       value: 
       objectReference: {fileID: 1761602904}
-    - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
-        type: 3}
-      propertyPath: levelText
-      value: 
-      objectReference: {fileID: 2003844943}
     - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
         type: 3}
       propertyPath: lifeText
@@ -201,9 +191,9 @@ PrefabInstance:
       objectReference: {fileID: 625965551}
     - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
         type: 3}
-      propertyPath: maxLife
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 2003844943}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df07af1d73b141f489134572a5a06b17, type: 3}
 --- !u!1001 &370358482
@@ -271,16 +261,6 @@ PrefabInstance:
     - target: {fileID: 3371061009678428936, guid: dc58fbfb35f12da42b3e9c9734992e0a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8798831435273328051, guid: dc58fbfb35f12da42b3e9c9734992e0a,
-        type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8798831435273328051, guid: dc58fbfb35f12da42b3e9c9734992e0a,
-        type: 3}
-      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

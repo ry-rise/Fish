@@ -135,6 +135,7 @@ MonoBehaviour:
   rb: {fileID: 2245355552487552324}
   maxSpeed: 5
   addSpeed: 0.25
+  sprite: {fileID: 8798831435273328051}
 --- !u!114 &2845074564845434462
 MonoBehaviour:
   m_ObjectHideFlags: 0

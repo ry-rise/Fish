@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
     private float maxSpeed = 0;
     [SerializeField]
     private float addSpeed = 0;
+    [SerializeField]
+    private SpriteRenderer sprite = null;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,14 @@ public class PlayerControl : MonoBehaviour
         float getY = Input.GetAxis("Vertical");
         if (getX != 0 || getY != 0)
         {
+            if (getX < 0)
+            {
+                sprite.flipX = false;
+            }
+            else
+            {
+                sprite.flipX = true;
+            }
             rb.velocity += new Vector2(getX, getY) * addSpeed;
             //正規化
             if (rb.velocity.x * rb.velocity.x + rb.velocity.y * rb.velocity.y > maxSpeed * maxSpeed)

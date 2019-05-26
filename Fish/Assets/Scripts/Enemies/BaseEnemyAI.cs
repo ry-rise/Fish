@@ -6,6 +6,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
 {
     [SerializeField]
     protected BaseFish data = null;
+    public BaseFish Data { get { return data; } }
 
     protected Rigidbody2D rb;
 
