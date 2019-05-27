@@ -262,6 +262,16 @@ PrefabInstance:
       propertyPath: timeText
       value: 
       objectReference: {fileID: 96510591}
+    - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
+        type: 3}
+      propertyPath: lifeText
+      value: 
+      objectReference: {fileID: 1906813333}
+    - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
+        type: 3}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 1860603952}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df07af1d73b141f489134572a5a06b17, type: 3}
 --- !u!1001 &782947694
@@ -333,26 +343,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc58fbfb35f12da42b3e9c9734992e0a, type: 3}
---- !u!1 &1752739075 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8369644512527695248, guid: dc58fbfb35f12da42b3e9c9734992e0a,
-    type: 3}
-  m_PrefabInstance: {fileID: 782947694}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1752739082
+--- !u!114 &1860603952 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8686506717069323277, guid: b1edd27203d49404c879adcc30eeb0ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 8686506717618989181}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752739075}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9feb0735e7ce7e042b99c6c79cb54307, type: 3}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeText: {fileID: 1906813333}
-  maxLife: 1
 --- !u!114 &1906813333 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8686506718430937576, guid: b1edd27203d49404c879adcc30eeb0ce,
