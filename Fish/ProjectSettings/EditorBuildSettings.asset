@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainGame.unity
     guid: 1c26405724c43a1498cbf7c56cb22f4b
+  - enabled: 1
+    path: Assets/Scenes/Ranking.unity
+    guid: 162b8dcc85250d7429b8efd79cc94be9
+  - enabled: 1
+    path: Assets/Scenes/PictureBook.unity
+    guid: a49d0e3a83839de40bd4e6143d6f470a
   m_configObjects: {}

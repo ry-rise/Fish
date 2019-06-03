@@ -9,4 +9,12 @@ public class OpButton : MonoBehaviour
     {
         SceneManager.LoadScene("MainGame");
     }
+    public void PictureBookStart()
+    {
+        SceneManager.LoadScene("PictureBook");
+    }
+    public void RankingStart()
+    {
+        SceneManager.LoadScene("Ranking");
+    }
 }
