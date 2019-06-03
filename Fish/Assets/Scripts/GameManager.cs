@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     //時間
     [SerializeField]
     private Text timeText = null;
+    [SerializeField]
+    private float timeMax = 100;
     private float time = 0;
     //ライフ
     [SerializeField]
@@ -30,8 +32,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float multipleB = 15;
     private float currentExp;
-    private int currentLevel = 1;
-    public int CurrentLevel { get { return currentLevel; } }
+    public int CurrentLevel { get; private set; }
+
+    private GameObject player;
+    private Camera mainCamera;
+
+    [SerializeField]
+    private Vector3 cameraBasePosition = Vector3.zero;
+
+    public void CameraMove()
+    {
+        //カメラ移動
+        mainCamera.transform.position = player.transform.position + cameraBasePosition;
+        //カメラ大きさ変更
+    }
 
     public int NextExp
     {
@@ -39,11 +53,11 @@ public class GameManager : MonoBehaviour
         {
             int result = 1;
             float exeA = firstLevelUpSize;
-            for (int n = 0; n < currentLevel - 1; ++n)
+            for (int n = 0; n < CurrentLevel - 1; ++n)
             {
                 exeA *= multipleA;
             }
-            float exeB = currentLevel * multipleB;
+            float exeB = CurrentLevel * multipleB;
             result = (int)((exeA + exeB) / 2);
 
             return result;
@@ -54,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         if (0 <= currentExp - NextExp)
         {
-            ++currentLevel;
+            ++CurrentLevel;
             currentExp -= NextExp;
         }
     }
@@ -71,13 +85,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player");
+        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         GameReset();
     }
 
     void Update()
     {
+        CameraMove();
         LevelUp();
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         UIUpdate();
     }
 
@@ -90,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void GameReset()
     {
-        time = 0;
+        time = timeMax;
         life = maxLife;
         //UIバーを初期化
     }
