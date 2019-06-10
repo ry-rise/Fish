@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3371061009678428936}
   - component: {fileID: 8798831435273328051}
-  - component: {fileID: 8851942831835413137}
   - component: {fileID: 2245355552487552324}
   - component: {fileID: 6196589896357901199}
   - component: {fileID: 2845074564845434462}
+  - component: {fileID: 1629218958974055603}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -83,22 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8851942831835413137
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8369644512527695248}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1
 --- !u!50 &2245355552487552324
 Rigidbody2D:
   serializedVersion: 4
@@ -119,7 +103,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6196589896357901199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +132,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdefeff000790641a0fe890b7ec0d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1629218958974055603
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369644512527695248}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.2, y: -0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.5, y: 1.93}
+    newSize: {x: 10.24, y: 7.68}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.5}
+  m_EdgeRadius: 0

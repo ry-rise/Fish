@@ -292,7 +292,7 @@ PrefabInstance:
     - target: {fileID: 1486217149169112244, guid: 712600ad7d8ced641a049d69b3f436d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1486217149169112244, guid: 712600ad7d8ced641a049d69b3f436d0,
         type: 3}
@@ -417,11 +417,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5956292519042791445, guid: df07af1d73b141f489134572a5a06b17,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5956292519042791447, guid: df07af1d73b141f489134572a5a06b17,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -479,6 +474,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
         type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 1924431199}
+    - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
+        type: 3}
       propertyPath: lifeText
       value: 
       objectReference: {fileID: 2027544430}
@@ -489,9 +489,9 @@ PrefabInstance:
       objectReference: {fileID: 1198232015}
     - target: {fileID: 5956292519042791446, guid: df07af1d73b141f489134572a5a06b17,
         type: 3}
-      propertyPath: timeText
-      value: 
-      objectReference: {fileID: 1924431199}
+      propertyPath: cameraBasePosition.z
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df07af1d73b141f489134572a5a06b17, type: 3}
 --- !u!1001 &7482002858320311933

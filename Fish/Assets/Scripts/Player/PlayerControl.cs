@@ -12,15 +12,19 @@ public class PlayerControl : MonoBehaviour
     private float addSpeed = 0;
     [SerializeField]
     private SpriteRenderer sprite = null;
+    private int level = 1;
+    private GameManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        SizeChanger();
         MainControl();
     }
 
@@ -58,5 +62,10 @@ public class PlayerControl : MonoBehaviour
     {
         //ゲームマネージャーからレベルを見る
         Vector2 size = transform.localScale;
+        if (level < manager.CurrentLevel)
+        {
+            level = manager.CurrentLevel;
+            transform.localScale = new Vector2(1, 1) * level;
+        }
     }
 }

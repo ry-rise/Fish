@@ -19,7 +19,8 @@ public class FishHitter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Eater();
+        Damage();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,14 +31,13 @@ public class FishHitter : MonoBehaviour
             int fishBLev = gameManager.CurrentLevel;
             if (-1 == DamageFish.IndexOf(collision.gameObject.GetComponent<BaseEnemyAI>()))
             {
-                if (fishALev > fishBLev)
+                if (fishALev >= fishBLev)
                 {
                     EatFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
                 }
-                else if (fishALev < fishBLev)
+                else
                 {
                     DamageFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
-
                 }
             }
         }

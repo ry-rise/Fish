@@ -40,6 +40,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Vector3 cameraBasePosition = Vector3.zero;
 
+    private List<int> eatFishes = null;
+    private List<int> eatFishTypes = null;
+
+    public static float GetTime = 0;//時間
+    public static List<int> GetEatFishTypes = null; //食べた魚の番号
+    public static List<int> GetEatFishes = null;//食べた魚の数
+
     public void CameraMove()
     {
         //カメラ移動
@@ -102,7 +109,7 @@ public class GameManager : MonoBehaviour
     {
         timeText.text = $"Time:{Mathf.Floor(time)}";
         lifeText.text = $"HP:{Life}";
-        levelText.text = $"NextEXP:{NextExp}";
+        levelText.text = $"NextEXP:{NextExp - currentExp}";
     }
 
     public void GameReset()
@@ -110,5 +117,12 @@ public class GameManager : MonoBehaviour
         time = timeMax;
         life = maxLife;
         //UIバーを初期化
+    }
+
+    public void GameRecord()
+    {
+        GetTime = time;
+        GetEatFishes = eatFishes;
+        GetEatFishTypes = eatFishTypes;
     }
 }
