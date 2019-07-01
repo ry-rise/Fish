@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Linq;
 public class GameManager : MonoBehaviour
 {
     //時間
@@ -40,12 +40,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Vector3 cameraBasePosition = Vector3.zero;
 
-    private List<int> eatFishes = null;
-    private List<int> eatFishTypes = null;
+    private List<string> eatFishTypes;
+    private Dictionary<string, int> eatFishes;
 
     public static float GetTime = 0;//時間
-    public static List<int> GetEatFishTypes = null; //食べた魚の番号
-    public static List<int> GetEatFishes = null;//食べた魚の数
+    public static List<string> GetEatFishTypes = null; //食べた魚の名前
+    public static Dictionary<string, int> GetEatFishes = null;//食べた魚の数
+
+    private void EatFishCounter(string fishName)
+    {
+        if(eatFishTypes.Any(a => a == fishName))
+        {
+            ++eatFishes[fishName];
+        }
+        else
+        {
+            eatFishTypes.Add(fishName);
+            eatFishes.Add(fishName, 1);
+        }
+    }
 
     public void CameraMove()
     {
@@ -58,7 +71,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            int result = 1;
+            int result;
             float exeA = firstLevelUpSize;
             for (int n = 0; n < CurrentLevel - 1; ++n)
             {
@@ -85,15 +98,19 @@ public class GameManager : MonoBehaviour
         life -= damage * Time.deltaTime;
     }
 
-    public void Eater(int level)
+    public void Eater(int level, string name)
     {
         currentExp += level * level;
+        EatFishCounter(name);
     }
 
     void Start()
     {
         player = GameObject.Find("Player");
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        eatFishTypes = new List<string>();
+        eatFishes = new Dictionary<string, int>();
+        CurrentLevel = 1;
         GameReset();
     }
 
@@ -103,6 +120,10 @@ public class GameManager : MonoBehaviour
         LevelUp();
         time -= Time.deltaTime;
         UIUpdate();
+        if (time <= 0)
+        {
+
+        }
     }
 
     public void UIUpdate()

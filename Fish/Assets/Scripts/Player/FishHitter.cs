@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FishHitter : MonoBehaviour
 {
@@ -27,17 +28,22 @@ public class FishHitter : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fish")
         {
-            int fishALev = collision.gameObject.GetComponent<BaseEnemyAI>().Data.Level;
+            BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
+            if (!enemy.IsPoped) return;
+            int fishALev = enemy.Data.Level;
             int fishBLev = gameManager.CurrentLevel;
-            if (-1 == DamageFish.IndexOf(collision.gameObject.GetComponent<BaseEnemyAI>()))
+            if (fishALev <= fishBLev)
             {
-                if (fishALev >= fishBLev)
+                if (-1 == EatFish.IndexOf(enemy))
                 {
-                    EatFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
+                    EatFish.Add(enemy);
                 }
-                else
+            }
+            else if (fishALev > fishBLev)
+            {
+                if (-1 == DamageFish.IndexOf(enemy))
                 {
-                    DamageFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
+                    DamageFish.Add(enemy);
                 }
             }
         }
@@ -47,36 +53,35 @@ public class FishHitter : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fish")
         {
-            int fishALev = collision.gameObject.GetComponent<BaseEnemyAI>().Data.Level;
-            int fishBLev = gameManager.CurrentLevel;
-            if (-1 != DamageFish.IndexOf(collision.gameObject.GetComponent<BaseEnemyAI>()))
+            BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
+            if (!enemy.IsPoped) return;
+            if (EatFish.Any(a => a == enemy))
             {
-                if (fishALev > fishBLev)
-                {
-                    EatFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
-                }
-                else if (fishALev < fishBLev)
-                {
-                    DamageFish.Add(collision.gameObject.GetComponent<BaseEnemyAI>());
-
-                }
+                EatFish.Remove(enemy);
+                return;
+            }
+            if (DamageFish.Any(a => a == enemy))
+            {
+                DamageFish.Remove(enemy);
+                return;
             }
         }
     }
 
     private void Eater()
     {
-        foreach (BaseEnemyAI it in EatFish)
+        if (0 == EatFish.Count) return;
+        for (int i = 0; i < EatFish.Count; ++i)
         {
-            gameManager.Eater(it.Data.Level);
-            Destroy(it.gameObject);
+            gameManager.Eater(EatFish[i].Data.Level, EatFish[i].name);
+            Destroy(EatFish[i].gameObject);
         }
-        EatFish.Clear();
     }
 
     private void Damage()
     {
-        foreach (BaseEnemyAI it in DamageFish)
+        if (0 == DamageFish.Count) return;
+        for (int i = 0; i < DamageFish.Count; ++i)
         {
             gameManager.Damage();
         }

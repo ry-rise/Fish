@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1772776898536677030}
   - component: {fileID: 429552551023645268}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: SideTypeFish
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,3 +132,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 796efdda2b0d0d14685fef8bbf462cc2, type: 2}
+  popTime: 1

@@ -10,17 +10,39 @@ abstract public class BaseEnemyAI : MonoBehaviour
 
     protected Rigidbody2D rb;
 
+    protected SpriteRenderer sprite;
+    [SerializeField]
+    protected float popTime = 1;
+    protected float popTimeCount = 0;
+    public bool IsPoped { get; private set; }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
         SizeChanger();
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
+        IsPoped = false;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        Move();
+        if (!IsPoped)
+        {
+            popTimeCount += Time.deltaTime;
+            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, popTimeCount / popTime);
+            if (popTimeCount >= popTime)
+            {
+                sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1);
+                IsPoped = true;
+            }
+        }
+        else
+        {
+            Move();
+        }
     }
 
     abstract protected void Move();
