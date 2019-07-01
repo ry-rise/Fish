@@ -176,7 +176,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &96510591 stripped
 MonoBehaviour:
@@ -324,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 3371061009678428936, guid: dc58fbfb35f12da42b3e9c9734992e0a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3371061009678428936, guid: dc58fbfb35f12da42b3e9c9734992e0a,
         type: 3}
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 1815861037}
   - component: {fileID: 1815861036}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: EnemiesSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +397,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1860603952 stripped
 MonoBehaviour:
@@ -473,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 1486217149169112244, guid: 712600ad7d8ced641a049d69b3f436d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1486217149169112244, guid: 712600ad7d8ced641a049d69b3f436d0,
         type: 3}
@@ -542,7 +542,7 @@ PrefabInstance:
     - target: {fileID: 8686506717088946920, guid: b1edd27203d49404c879adcc30eeb0ce,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8686506717088946920, guid: b1edd27203d49404c879adcc30eeb0ce,
         type: 3}
