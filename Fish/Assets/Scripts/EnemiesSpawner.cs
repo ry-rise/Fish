@@ -4,22 +4,38 @@ using UnityEngine;
 public class EnemiesSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemies=null;
-    private float spawnTime;
+    private GameObject[,] tables;
+    private float timer;
+    private float spawnTime = 5.0f;
 
-    void Update()
+    private void Start()
     {
-        spawnTime += Time.deltaTime;
+        tables = new GameObject[4, 3];
+        int enemiesNumber = 0;
+        for (int x = 0; x < 4; x += 1)
+        {
+            for (int y = 0; y < 3; y += 1)
+            {
+                if (enemies[enemiesNumber] == null) { return; }
+                tables[x, y] = enemies[enemiesNumber];
+                enemiesNumber += 1;
+            }
+        }
+    }
+    private void Update()
+    {
+        timer += Time.deltaTime;
         EnemySpawn();
     }
 
     private void EnemySpawn()
     {
-        if (spawnTime >= 1.0f)
+        if (timer >= spawnTime)
         {
             if (enemies != null)
             {
-                Instantiate(enemies[Random.Range(0, enemies.Length)], transform);
-                spawnTime = 0;
+                Instantiate(tables[3, 2], new Vector3(5, 20, -10), Quaternion.identity);
+                timer = 0;
             }
         }
     }
