@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EscapeTypeFish : BaseEnemyAI
+public class FishAI : BaseEnemyAI
 {
     private int direction;
     private FishSearcher fs;
@@ -37,6 +37,12 @@ public class EscapeTypeFish : BaseEnemyAI
         {
             Vector2 target = fs.LargeTargetPosition;
             Vector2 dir = (Vector2)transform.position - target;
+            move = dir * data.Speed;
+        }
+        else if (fs.IsSmallTargeted)
+        {
+            Vector2 target = fs.SmallTargetPosition;
+            Vector2 dir = target - (Vector2)transform.position;
             move = dir * data.Speed;
         }
         //正規化

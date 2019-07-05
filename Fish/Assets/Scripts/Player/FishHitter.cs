@@ -32,7 +32,7 @@ public class FishHitter : MonoBehaviour
             if (!enemy.IsPoped) return;
             int fishALev = enemy.Data.Level;
             int fishBLev = gameManager.CurrentLevel;
-            if (fishALev <= fishBLev)
+            if (fishALev < fishBLev)
             {
                 if (-1 == EatFish.IndexOf(enemy))
                 {

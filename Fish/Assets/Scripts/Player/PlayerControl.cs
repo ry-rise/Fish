@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     {
         Level = 1;
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        SizeChanger(true);
     }
 
     // Update is called once per frame
@@ -60,14 +61,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void SizeChanger()
+    private void SizeChanger(bool flag = false)
     {
         //ゲームマネージャーからレベルを見る
         //Vector2 size = transform.localScale;
-        if (Level < manager.CurrentLevel)
+        if (Level < manager.CurrentLevel || flag)
         {
             Level = manager.CurrentLevel;
-            transform.localScale = new Vector2(1, 1) * Level;
+            transform.localScale = new Vector2(1, 1) * Level * 0.5f;
         }
     }
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: "\u65753"
   level: 1
-  speed: 2
+  speed: 4

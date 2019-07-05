@@ -3,24 +3,25 @@ using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemies=null;
-    private GameObject[,] tables;
+    [SerializeField] private float playerRange = 1.0f;
+    [SerializeField] private Group[] groups = null;
     private float timer;
     private float spawnTime = 5.0f;
+    private GameManager manager;
+    private GameObject player;
+
+    [System.Serializable]
+    public class Group
+    {
+        [SerializeField]
+        private GameObject[] enemies = null;
+        public GameObject[] Enemies { get { return enemies; } }
+    }
 
     private void Start()
     {
-        tables = new GameObject[4, 3];
-        int enemiesNumber = 0;
-        for (int x = 0; x < 4; x += 1)
-        {
-            for (int y = 0; y < 3; y += 1)
-            {
-                if (enemies[enemiesNumber] == null) { return; }
-                tables[x, y] = enemies[enemiesNumber];
-                enemiesNumber += 1;
-            }
-        }
+        manager = GetComponent<GameManager>();
+        player = GameObject.Find("Player");
     }
     private void Update()
     {
@@ -30,11 +31,16 @@ public class EnemiesSpawner : MonoBehaviour
 
     private void EnemySpawn()
     {
-        if (timer >= spawnTime)
+        if (groups.Length > manager.CurrentLevel - 1)
         {
-            if (enemies != null)
+            if (timer >= spawnTime)
             {
-                Instantiate(tables[3, 2], new Vector3(5, 20, -10), Quaternion.identity);
+                float r = Mathf.Sqrt(Random.Range(0.0f, 1.0f)) * playerRange;
+                float angle = Random.rotation.y * Mathf.Rad2Deg;
+                Vector2 position = new Vector2(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r);
+
+                GameObject prefab = groups[manager.CurrentLevel].Enemies[Random.Range(0, groups[manager.CurrentLevel].Enemies.Length)];
+                Instantiate(prefab, (Vector2)player.transform.position + position, Quaternion.identity);
                 timer = 0;
             }
         }

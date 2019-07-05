@@ -8,6 +8,8 @@ abstract public class BaseEnemyAI : MonoBehaviour
     protected BaseFish data = null;
     public BaseFish Data { get { return data; } }
 
+    protected GameObject player;
+
     protected Rigidbody2D rb;
 
     protected SpriteRenderer sprite;
@@ -20,6 +22,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
     protected virtual void Start()
     {
         SizeChanger();
+        player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
@@ -29,6 +32,10 @@ abstract public class BaseEnemyAI : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (Vector2.Distance(player.transform.position, transform.position) >= 50f)
+        {
+            Destroy(gameObject);
+        }
         if (!IsPoped)
         {
             popTimeCount += Time.deltaTime;
@@ -42,6 +49,14 @@ abstract public class BaseEnemyAI : MonoBehaviour
         else
         {
             Move();
+            if (rb.velocity.x < 0)
+            {
+                sprite.flipX = false;
+            }
+            else
+            {
+                sprite.flipX = true;
+            }
         }
     }
 
@@ -49,6 +64,11 @@ abstract public class BaseEnemyAI : MonoBehaviour
 
     private void SizeChanger()
     {
-        transform.localScale = new Vector2(1, 1) * data.Level;
+        transform.localScale = new Vector2(1, 1) * (data.Level != 0 ? data.Level * 0.5f : 0.1f);
+        Transform children = GetComponentInChildren<Transform>();
+        foreach (Transform child in children)
+        {
+            child.localScale = Vector2.one / (data.Level != 0 ? data.Level * 0.5f : 0.1f);
+        }
     }
 }
