@@ -34,7 +34,7 @@ public class EnemiesSpawner : MonoBehaviour
         {
             if (enemies != null)
             {
-                Instantiate(tables[3, 1], new Vector3(5, 20, -10), Quaternion.identity);
+                Instantiate(tables[3, 2], new Vector3(5, 20, -10), Quaternion.identity);
                 timer = 0;
             }
         }
