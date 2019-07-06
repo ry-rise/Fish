@@ -25,8 +25,11 @@ public class EnemiesSpawner : MonoBehaviour
     }
     private void Update()
     {
-        timer += Time.deltaTime;
-        EnemySpawn();
+        if (manager.State == GameManager.GameStatus.Play)
+        {
+            timer += Time.deltaTime;
+            EnemySpawn();
+        }
     }
 
     private void EnemySpawn()

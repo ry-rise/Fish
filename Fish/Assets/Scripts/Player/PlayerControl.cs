@@ -13,22 +13,23 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private SpriteRenderer sprite = null;
     private GameManager manager;
-
-    public int Level { get; private set; } 
+    public int Level { get { return manager.CurrentLevel; } }
 
     // Start is called before the first frame update
     void Start()
     {
-        Level = 1;
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        SizeChanger(true);
+        SizeChanger();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SizeChanger();
-        MainControl();
+        if (manager.State == GameManager.GameStatus.Play)
+        {
+            SizeChanger();
+            MainControl();
+        }
     }
 
     private void MainControl()
@@ -61,14 +62,10 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void SizeChanger(bool flag = false)
+    public void SizeChanger()
     {
         //ゲームマネージャーからレベルを見る
         //Vector2 size = transform.localScale;
-        if (Level < manager.CurrentLevel || flag)
-        {
-            Level = manager.CurrentLevel;
-            transform.localScale = new Vector2(1, 1) * Level * 0.5f;
-        }
+        transform.localScale = new Vector2(1, 1) * manager.CurrentLevel * 0.5f;
     }
 }

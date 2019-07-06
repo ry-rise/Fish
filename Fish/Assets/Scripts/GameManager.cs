@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEditor.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     //時間
@@ -17,8 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private float maxLife = 1;
-    private float life;
-    public float Life { get { return life; } }
+    public float Life { get; private set; }
     [SerializeField]
     private float damage = 1;
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private float currentExp;
     public int CurrentLevel { get; private set; }
 
-    private GameObject player;
+    private PlayerControl player;
     private Camera mainCamera;
 
     [SerializeField]
@@ -47,6 +47,13 @@ public class GameManager : MonoBehaviour
     public static List<string> GetEatFishTypes = null; //食べた魚の名前
     public static Dictionary<string, int> GetEatFishes = null;//食べた魚の数
 
+    public enum GameStatus
+    {
+        Start,
+        Play,
+        End
+    }
+    public GameStatus State { get; private set; }
     private void EatFishCounter(string fishName)
     {
         if(eatFishTypes.Any(a => a == fishName))
@@ -89,13 +96,14 @@ public class GameManager : MonoBehaviour
         if (0 <= currentExp - NextExp)
         {
             ++CurrentLevel;
+            player.SizeChanger();
             currentExp -= NextExp;
         }
     }
 
     public void Damage()
     {
-        life -= damage * Time.deltaTime;
+        Life -= damage * Time.deltaTime;
     }
 
     public void Eater(int level, string name)
@@ -104,17 +112,40 @@ public class GameManager : MonoBehaviour
         EatFishCounter(name);
     }
 
-    void Start()
+    void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<PlayerControl>();
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         eatFishTypes = new List<string>();
         eatFishes = new Dictionary<string, int>();
         CurrentLevel = 1;
+        State = GameStatus.Start;
         GameReset();
     }
 
     void Update()
+    {
+        switch (State)
+        {
+            case GameStatus.Start:
+                StartGame();
+                break;
+            case GameStatus.Play:
+                PlayGame();
+                break;
+            case GameStatus.End:
+                EndGame();
+                break;
+        }
+    }
+
+    private void StartGame()
+    {
+        CameraMove();
+        UIUpdate();
+        State = GameStatus.Play;
+    }
+    private void PlayGame()
     {
         CameraMove();
         LevelUp();
@@ -122,8 +153,17 @@ public class GameManager : MonoBehaviour
         UIUpdate();
         if (time <= 0)
         {
-
+            State = GameStatus.End;
         }
+        else if(Life <= 0)
+        {
+            State = GameStatus.End;
+        }
+    }
+    private void EndGame()
+    {
+        GameRecord();
+        EditorSceneManager.LoadScene("Result");   
     }
 
     public void UIUpdate()
@@ -136,7 +176,7 @@ public class GameManager : MonoBehaviour
     public void GameReset()
     {
         time = timeMax;
-        life = maxLife;
+        Life = maxLife;
         //UIバーを初期化
     }
 

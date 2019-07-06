@@ -7,6 +7,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
     [SerializeField]
     protected BaseFish data = null;
     public BaseFish Data { get { return data; } }
+    public int Level { get; protected set; }
 
     protected GameObject player;
 
@@ -21,6 +22,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        Level = Random.Range(Data.MinLevel, Data.MaxLevel + 1);
         SizeChanger();
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
@@ -64,11 +66,11 @@ abstract public class BaseEnemyAI : MonoBehaviour
 
     private void SizeChanger()
     {
-        transform.localScale = new Vector2(1, 1) * (data.Level != 0 ? data.Level * 0.5f : 0.1f);
+        transform.localScale = new Vector2(1, 1) * (Level != 0 ? Level * 0.5f : 0.1f);
         Transform children = GetComponentInChildren<Transform>();
         foreach (Transform child in children)
         {
-            child.localScale = Vector2.one / (data.Level != 0 ? data.Level * 0.5f : 0.1f);
+            child.localScale = Vector2.one / (Level != 0 ? Level * 0.5f : 0.1f);
         }
     }
 }

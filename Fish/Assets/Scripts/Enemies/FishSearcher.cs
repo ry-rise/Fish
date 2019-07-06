@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class FishSearcher : MonoBehaviour
 {
     private List<BaseEnemyAI> mobFish;
@@ -14,14 +13,14 @@ public class FishSearcher : MonoBehaviour
         {
             Vector2 top = Vector2.zero;
             float dis = float.MaxValue;
-            if (null != playerFish && parent.Data.Level < playerFish.Level)
+            if (null != playerFish && parent.Level < playerFish.Level)
             {
                 top = playerFish.transform.position;
                 dis = Vector2.Distance(transform.position, playerFish.transform.position);
             }
             foreach (BaseEnemyAI it in mobFish)
             {
-                if (parent.Data.Level > it.Data.Level) continue;
+                if (parent.Level > it.Level) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if(dis > cDis)
                 {
@@ -39,14 +38,14 @@ public class FishSearcher : MonoBehaviour
         {
             Vector2 top = Vector2.zero;
             float dis = float.MaxValue;
-            if (null != playerFish && parent.Data.Level > playerFish.Level)
+            if (null != playerFish && parent.Level > playerFish.Level)
             {
                 top = playerFish.transform.position;
                 dis = Vector2.Distance(transform.position, playerFish.transform.position);
             }
             foreach (BaseEnemyAI it in mobFish)
             {
-                if (parent.Data.Level < it.Data.Level) continue;
+                if (parent.Level < it.Level) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if (dis > cDis)
                 {
@@ -62,7 +61,7 @@ public class FishSearcher : MonoBehaviour
     {
         get
         {
-            if (null != playerFish && parent.Data.Level < playerFish.Level)
+            if (null != playerFish && parent.Level < playerFish.Level)
             {
                 return true;
             }
@@ -70,7 +69,7 @@ public class FishSearcher : MonoBehaviour
             {
                 foreach (BaseEnemyAI it in mobFish)
                 {
-                    if (parent.Data.Level < it.Data.Level) return true;
+                    if (parent.Level < it.Level) return true;
                 }
             }
             return false;
@@ -80,7 +79,7 @@ public class FishSearcher : MonoBehaviour
     {
         get
         {
-            if (null != playerFish && parent.Data.Level > playerFish.Level)
+            if (null != playerFish && parent.Level > playerFish.Level)
             {
                 return true;
             }
@@ -88,7 +87,7 @@ public class FishSearcher : MonoBehaviour
             {
                 foreach (BaseEnemyAI it in mobFish)
                 {
-                    if (parent.Data.Level > it.Data.Level) return true;
+                    if (parent.Level > it.Level) return true;
                 }
             }
             return false;
