@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: playerRange
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 524816928, guid: df07af1d73b141f489134572a5a06b17, type: 3}
+      propertyPath: spawnTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df07af1d73b141f489134572a5a06b17, type: 3}
 --- !u!1001 &370358482

@@ -113,7 +113,6 @@ public class FishSearcher : MonoBehaviour
         if (collision.tag == "Fish")
         {
             BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
-            if (!enemy.IsPoped) return;
             mobFish.Add(enemy);
         }
         else if (collision.tag == "Player")
@@ -128,7 +127,6 @@ public class FishSearcher : MonoBehaviour
         if (collision.gameObject.tag == "Fish")
         {
             BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
-            if (!enemy.IsPoped) return;
             mobFish.Remove(enemy);
         }
         else if (collision.gameObject.tag == "Player")

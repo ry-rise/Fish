@@ -29,7 +29,6 @@ public class FishHitter : MonoBehaviour
         if (collision.gameObject.tag == "Fish")
         {
             BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
-            if (!enemy.IsPoped) return;
             int fishALev = enemy.Level;
             int fishBLev = gameManager.CurrentLevel;
             if (fishALev < fishBLev)
@@ -54,7 +53,6 @@ public class FishHitter : MonoBehaviour
         if (collision.gameObject.tag == "Fish")
         {
             BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
-            if (!enemy.IsPoped) return;
             if (EatFish.Any(a => a == enemy))
             {
                 EatFish.Remove(enemy);
@@ -73,6 +71,7 @@ public class FishHitter : MonoBehaviour
         if (0 == EatFish.Count) return;
         for (int i = 0; i < EatFish.Count; ++i)
         {
+            if (!EatFish[i].IsPoped) continue;
             gameManager.Eater(EatFish[i].Level, EatFish[i].name);
             Destroy(EatFish[i].gameObject);
         }
@@ -83,6 +82,7 @@ public class FishHitter : MonoBehaviour
         if (0 == DamageFish.Count) return;
         for (int i = 0; i < DamageFish.Count; ++i)
         {
+            if (!DamageFish[i].IsPoped) continue;
             gameManager.Damage();
         }
     }

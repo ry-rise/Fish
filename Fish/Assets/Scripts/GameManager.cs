@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     public void Eater(int level, string name)
     {
-        currentExp += level * level;
+        currentExp += (level + 1) * (level + 1);
         EatFishCounter(name);
     }
 
