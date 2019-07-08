@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6656235209347009570}
   - component: {fileID: 7215115471520728048}
   m_Layer: 0
-  m_Name: FishA
+  m_Name: Pike
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5b72af8bdd1793b49a67ca426538e731, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4058d96837440e74f8e980ff4a105d83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 282.88873
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a22d6663eac78429ae2ce91cf8fb90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 796efdda2b0d0d14685fef8bbf462cc2, type: 2}
+  data: {fileID: 11400000, guid: 6044f340db61552439979d45e7ea6870, type: 2}
   popTime: 1
 --- !u!60 &7215115471520728048
 PolygonCollider2D:
@@ -135,7 +135,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 2.085}
+    oldSize: {x: 5.96, y: 2.22}
     newSize: {x: 10.24, y: 7.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
