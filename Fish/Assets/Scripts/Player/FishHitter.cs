@@ -24,7 +24,7 @@ public class FishHitter : MonoBehaviour
         Damage();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Fish")
         {
@@ -48,7 +48,7 @@ public class FishHitter : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Fish")
         {

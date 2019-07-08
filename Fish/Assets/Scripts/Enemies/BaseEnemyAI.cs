@@ -66,7 +66,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
 
     private void SizeChanger()
     {
-        transform.localScale = new Vector2(1, 1) * (Level != 0 ? Level * 0.5f : 0.1f);
+        transform.localScale = new Vector2(1, 1) * (Level != 0 ? Level * 0.5f : 0.25f);
         Transform children = GetComponentInChildren<Transform>();
         foreach (Transform child in children)
         {

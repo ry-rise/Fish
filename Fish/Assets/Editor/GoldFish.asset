@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e049dcd0ce1ca434889ca111249f93d1, type: 3}
   m_Name: GoldFish
   m_EditorClassIdentifier: 
-  fishName: "\u65751"
+  fishName: "\u91D1\u9B5A"
   minLevel: 0
   maxLevel: 2
-  speed: 2
+  speed: 3
