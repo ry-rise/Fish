@@ -11,11 +11,11 @@ public class BaseFish : ScriptableObject
     public string FishName { get { return fishName; } }
     //魚のレベル
     [SerializeField]
-    private int minlevel = 1;
-    public int MinLevel { get { return minlevel; } }
+    private int minLevel = 1;
+    public int MinLevel { get { return minLevel; } }
     [SerializeField]
-    private int maxlevel = 1;
-    public int MaxLevel { get { return maxlevel; } }
+    private int maxLevel = 1;
+    public int MaxLevel { get { return maxLevel; } }
     //速度
     [SerializeField]
     private float speed = 1;

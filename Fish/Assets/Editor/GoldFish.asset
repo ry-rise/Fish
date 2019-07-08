@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GoldFish
   m_EditorClassIdentifier: 
   fishName: "\u65751"
-  minlevel: 0
-  maxlevel: 2
+  minLevel: 0
+  maxLevel: 2
   speed: 2
