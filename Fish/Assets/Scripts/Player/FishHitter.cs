@@ -72,7 +72,7 @@ public class FishHitter : MonoBehaviour
         for (int i = 0; i < EatFish.Count; ++i)
         {
             if (!EatFish[i].IsPoped) continue;
-            gameManager.Eater(EatFish[i].Level, EatFish[i].name);
+            gameManager.Eater(EatFish[i].Level, EatFish[i].Data.FishName);
             Destroy(EatFish[i].gameObject);
         }
     }

@@ -44,8 +44,14 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, int> eatFishes;
 
     public static float GetTime = 0;//時間
-    public static List<string> GetEatFishTypes = null; //食べた魚の名前
-    public static Dictionary<string, int> GetEatFishes = null;//食べた魚の数
+    public static List<string> GetEatFishTypes = new List<string>(); //食べた魚の名前
+    public static Dictionary<string, int> GetEatFishes = new Dictionary<string, int>();//食べた魚の数
+
+    public static bool GameClear = false;
+    public static int LastLevel = 1;
+
+    [SerializeField]
+    private int ClearLevel = 5;
 
     public enum GameStatus
     {
@@ -155,7 +161,11 @@ public class GameManager : MonoBehaviour
         {
             State = GameStatus.End;
         }
-        else if(Life <= 0)
+        else if (Life <= 0)
+        {
+            State = GameStatus.End;
+        }
+        else if (ClearLevel <= CurrentLevel)
         {
             State = GameStatus.End;
         }
@@ -185,5 +195,14 @@ public class GameManager : MonoBehaviour
         GetTime = time;
         GetEatFishes = eatFishes;
         GetEatFishTypes = eatFishTypes;
+        LastLevel = CurrentLevel;
+        if (ClearLevel <= CurrentLevel)
+        {
+            GameClear = true;
+        }
+        else
+        {
+            GameClear = false;
+        }
     }
 }

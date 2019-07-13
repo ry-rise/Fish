@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.SceneManagement;
 using UnityEngine.UI;
-
+using System.IO;
 public class PictureManager : MonoBehaviour
 {
     [SerializeField]
@@ -12,15 +12,25 @@ public class PictureManager : MonoBehaviour
     private string[] nameList = null;
     private int number;
 
+    private List<string> typeList;
+    private List<int> amountList;
+    private string path;
+    [SerializeField]
+    private SaveAndLoad sal = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        number = 0;
-        if (GameManager.GetEatFishTypes != null)
+        path = $"{Application.persistentDataPath}\\saveData.json";
+        if (File.Exists(path))
         {
-            nameList = GameManager.GetEatFishTypes.ToArray();
+            Data data = sal.LoadData(path);
+            typeList = data.Type;
+            amountList = data.Amount;
+            number = 0;
+            nameList = typeList.ToArray();
+            NamesChanger();
         }
-        NamesChanger();
     }
 
     // Update is called once per frame
@@ -31,20 +41,20 @@ public class PictureManager : MonoBehaviour
 
     public void NextNames()
     {
-        if (GameManager.GetEatFishTypes != null)
+        if (File.Exists(path))
         {
-            number = (number + 1) % nameList.Length / (names.Length - 1);
+            number = (number + 1) % (int)Mathf.Ceil((float)nameList.Length / names.Length);
+            NamesChanger();
         }
-        NamesChanger();
     }
 
     public void BackNames()
     {
-        if (GameManager.GetEatFishTypes != null)
+        if (File.Exists(path))
         {
-            number = (number + nameList.Length / names.Length - 1) % nameList.Length / names.Length - 1;
+            number = (number + nameList.Length / names.Length - 1) % (int)Mathf.Ceil((float)nameList.Length / names.Length);
+            NamesChanger();
         }
-        NamesChanger();
     }
 
     private void NamesChanger()

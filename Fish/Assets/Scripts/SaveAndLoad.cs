@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
+using System;
+using System.IO;
+using System.Collections.Generic;
 
-public class SaveAndLoad
+public class SaveAndLoad : MonoBehaviour
 {
-    public static void SaveData<T>(T data, string path)
+    public void SaveData(Data data, string path)
     {
-        var jsonData = JsonUtility.ToJson(data);
-
+        Data saveData = data;
+        string jsonData = JsonUtility.ToJson(saveData);
         System.IO.File.WriteAllText(path, jsonData);
     }
-
-    public static T LoadData<T>(string path)
+    public Data LoadData(string path)
     {
         var jsonData = System.IO.File.ReadAllText(path);
-        T data = JsonUtility.FromJson<T>(jsonData);
-        return data;
+        return JsonUtility.FromJson<Data>(jsonData);
     }
+}
+
+[Serializable]
+public class Data
+{
+    [SerializeField]
+    public List<string> Type = new List<string>();
+    public List<int> Amount = new List<int>();
+    public List<float> Time = new List<float>();
 }
