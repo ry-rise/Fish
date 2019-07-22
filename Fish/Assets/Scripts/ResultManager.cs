@@ -43,6 +43,7 @@ public class ResultManager : MonoBehaviour
 
             times.Sort((a, b) => CompareByID(a, b));
             //記録
+            data.Time.Clear();
             for (int i = 0; i < (times.Count < saveListAmount ? times.Count : saveListAmount); ++i)
             {
                 data.Time.Add(times[i]);

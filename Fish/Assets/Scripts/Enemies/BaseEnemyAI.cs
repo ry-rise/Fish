@@ -34,7 +34,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) >= 50f)
+        if (Vector2.Distance(player.transform.position, transform.position) >= 35f)
         {
             Destroy(gameObject);
         }
