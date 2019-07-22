@@ -10,8 +10,6 @@ public class PlayerControl : MonoBehaviour
     private float maxSpeed = 0;
     [SerializeField]
     private float addSpeed = 0;
-    [SerializeField]
-    private SpriteRenderer sprite = null;
     private GameManager manager;
     public int Level { get { return manager.CurrentLevel; } }
 

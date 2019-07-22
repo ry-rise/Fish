@@ -51,13 +51,13 @@ abstract public class BaseEnemyAI : MonoBehaviour
         else
         {
             Move();
-            if (rb.velocity.x < 0 && 0 > transform.localScale.x)
+            if (rb.velocity.x < 0)
             {
-                transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+                transform.localScale = new Vector2(Level != 0 ? Level * 0.5f : 0.25f, transform.localScale.y);
             }
-            else if (rb.velocity.x > 0 && 0 < transform.localScale.x)
+            else if (rb.velocity.x > 0)
             {
-                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                transform.localScale = new Vector2((Level != 0 ? Level * 0.5f : 0.25f) * -1, transform.localScale.y);
             }
         }
     }
@@ -66,7 +66,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
 
     private void SizeChanger()
     {
-        transform.localScale = new Vector2(1, 1) * (Level != 0 ? Level * 0.5f : 0.25f);
+        transform.localScale = Vector2.one * (Level != 0 ? Level * 0.5f : 0.25f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -49,7 +49,7 @@ public class FishSearcher : MonoBehaviour
             {
                 if (it == null) continue;
                 if (!it.IsPoped) continue;
-                if (parent.Level > it.Level) continue;
+                if (parent.Level >= it.Level) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if(dis > cDis)
                 {
@@ -76,7 +76,7 @@ public class FishSearcher : MonoBehaviour
             {
                 if (it == null) continue;
                 if (!it.IsPoped) continue;
-                if (parent.Level < it.Level) continue;
+                if (parent.Level <= it.Level) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if (dis > cDis)
                 {

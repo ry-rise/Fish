@@ -41,14 +41,12 @@ public class FishAI : BaseEnemyAI
         {
             if (fs.IsLargeTargeted)
             {
-                Debug.Log("やばい");
                 Vector2 target = fs.LargeTargetPosition;
                 Vector2 dir = (Vector2)transform.position - target;
                 move = dir * data.Speed;
             }
             else if (fs.IsSmallTargeted)
             {
-                Debug.Log("見つけた");
                 Vector2 target = fs.SmallTargetPosition;
                 Vector2 dir = target - (Vector2)transform.position;
                 move = dir * data.Speed;
