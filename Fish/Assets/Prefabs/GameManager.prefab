@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5956292519042791447}
   - component: {fileID: 5956292519042791446}
+  - component: {fileID: 524816928}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -52,4 +53,28 @@ MonoBehaviour:
   firstLevelUpSize: 10
   multipleA: 1.1
   multipleB: 15
-  cameraBasePosition: {x: 0, y: 0, z: 0}
+  cameraBasePosition: {x: 0, y: 0, z: -10}
+  ClearLevel: 5
+--- !u!114 &524816928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5956292519042791445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495d49e83c377da4e92e5eb9b8ecba63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRange: 10
+  spawnTime: 10
+  searchPrefab: {fileID: 3041188675990135723, guid: e772af4c657f95c4b895f18dc1df164c,
+    type: 3}
+  groups:
+  - enemies:
+    - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
+  - enemies:
+    - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
+  - enemies:
+    - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}

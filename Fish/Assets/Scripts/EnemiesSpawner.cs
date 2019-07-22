@@ -3,23 +3,52 @@ using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemies=null;
-    private float spawnTime;
+    [SerializeField] private float playerRange = 1.0f;
+    [SerializeField] private float spawnTime = 5.0f;
+    [SerializeField] private GameObject searchPrefab = null;
+    [SerializeField] private Group[] groups = null;
+    private float timer;
+    private GameManager manager;
+    private GameObject player;
 
-    void Update()
+    [System.Serializable]
+    public class Group
     {
-        spawnTime += Time.deltaTime;
-        EnemySpawn();
+        [SerializeField]
+        private GameObject[] enemies = null;
+        public GameObject[] Enemies { get { return enemies; } }
+    }
+
+    private void Start()
+    {
+        manager = GetComponent<GameManager>();
+        player = GameObject.Find("Player");
+    }
+    private void Update()
+    {
+        if (manager.State == GameManager.GameStatus.Play)
+        {
+            timer += Time.deltaTime;
+            EnemySpawn();
+        }
     }
 
     private void EnemySpawn()
     {
-        if (spawnTime >= 1.0f)
+        if (groups.Length > manager.CurrentLevel - 1)
         {
-            if (enemies != null)
+            if (timer >= spawnTime)
             {
-                Instantiate(enemies[Random.Range(0, enemies.Length)], transform);
-                spawnTime = 0;
+                int tableNum = manager.CurrentLevel - 1;
+                float r = Mathf.Sqrt(Random.Range(0.0f, 1.0f)) * playerRange;
+                float angle = Random.rotation.y * Mathf.Rad2Deg;
+                Vector2 setPos = new Vector2(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r);
+
+                GameObject prefab = groups[tableNum].Enemies[Random.Range(0, groups[tableNum].Enemies.Length)];
+                GameObject fish = Instantiate(prefab, (Vector2)player.transform.position + setPos, Quaternion.identity);
+                GameObject search = Instantiate(searchPrefab, (Vector2)player.transform.position + setPos, Quaternion.identity);
+                search.GetComponent<FishSearcher>().SetFish(fish);
+                timer = 0;
             }
         }
     }

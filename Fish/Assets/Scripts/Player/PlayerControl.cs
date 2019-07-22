@@ -12,20 +12,24 @@ public class PlayerControl : MonoBehaviour
     private float addSpeed = 0;
     [SerializeField]
     private SpriteRenderer sprite = null;
-    private int level = 1;
     private GameManager manager;
+    public int Level { get { return manager.CurrentLevel; } }
 
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        SizeChanger();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SizeChanger();
-        MainControl();
+        if (manager.State == GameManager.GameStatus.Play)
+        {
+            SizeChanger();
+            MainControl();
+        }
     }
 
     private void MainControl()
@@ -37,11 +41,11 @@ public class PlayerControl : MonoBehaviour
         {
             if (getX < 0)
             {
-                sprite.flipX = false;
+                transform.localScale = new Vector2(manager.CurrentLevel * 0.5f, transform.localScale.y);
             }
-            else
+            else if (getX > 0)
             {
-                sprite.flipX = true;
+                transform.localScale = new Vector2(-1 * manager.CurrentLevel * 0.5f, transform.localScale.y);
             }
             rb.velocity += new Vector2(getX, getY) * addSpeed;
             //正規化
@@ -58,14 +62,17 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void SizeChanger()
+    public void SizeChanger()
     {
         //ゲームマネージャーからレベルを見る
-        Vector2 size = transform.localScale;
-        if (level < manager.CurrentLevel)
+        //Vector2 size = transform.localScale;
+        if (transform.localScale.x > 0)
         {
-            level = manager.CurrentLevel;
-            transform.localScale = new Vector2(1, 1) * level;
+            transform.localScale = new Vector2(1, 1) * manager.CurrentLevel * 0.5f;
+        }
+        else
+        {
+            transform.localScale = new Vector2(-1, 1) * manager.CurrentLevel * 0.5f;
         }
     }
 }
