@@ -9,16 +9,12 @@ using UnityEngine.UI;
 
 public class ResultManager : MonoBehaviour
 {
-
     [SerializeField]
     private Button result;
     
-    GameManager  time;
-
     public void Go()
     {
         SceneManager.LoadScene("Title");
-        time = GetComponent < GameManager>();
     }
 
     
