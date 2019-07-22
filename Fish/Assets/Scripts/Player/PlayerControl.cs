@@ -41,11 +41,11 @@ public class PlayerControl : MonoBehaviour
         {
             if (getX < 0)
             {
-                sprite.flipX = false;
+                transform.localScale = new Vector2(manager.CurrentLevel * 0.5f, transform.localScale.y);
             }
-            else
+            else if (getX > 0)
             {
-                sprite.flipX = true;
+                transform.localScale = new Vector2(-1 * manager.CurrentLevel * 0.5f, transform.localScale.y);
             }
             rb.velocity += new Vector2(getX, getY) * addSpeed;
             //正規化
@@ -66,6 +66,13 @@ public class PlayerControl : MonoBehaviour
     {
         //ゲームマネージャーからレベルを見る
         //Vector2 size = transform.localScale;
-        transform.localScale = new Vector2(1, 1) * manager.CurrentLevel * 0.5f;
+        if (transform.localScale.x > 0)
+        {
+            transform.localScale = new Vector2(1, 1) * manager.CurrentLevel * 0.5f;
+        }
+        else
+        {
+            transform.localScale = new Vector2(-1, 1) * manager.CurrentLevel * 0.5f;
+        }
     }
 }

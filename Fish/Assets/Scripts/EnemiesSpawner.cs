@@ -5,6 +5,7 @@ public class EnemiesSpawner : MonoBehaviour
 {
     [SerializeField] private float playerRange = 1.0f;
     [SerializeField] private float spawnTime = 5.0f;
+    [SerializeField] private GameObject searchPrefab = null;
     [SerializeField] private Group[] groups = null;
     private float timer;
     private GameManager manager;
@@ -41,10 +42,12 @@ public class EnemiesSpawner : MonoBehaviour
                 int tableNum = manager.CurrentLevel - 1;
                 float r = Mathf.Sqrt(Random.Range(0.0f, 1.0f)) * playerRange;
                 float angle = Random.rotation.y * Mathf.Rad2Deg;
-                Vector2 position = new Vector2(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r);
+                Vector2 setPos = new Vector2(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r);
 
                 GameObject prefab = groups[tableNum].Enemies[Random.Range(0, groups[tableNum].Enemies.Length)];
-                Instantiate(prefab, (Vector2)player.transform.position + position, Quaternion.identity);
+                GameObject fish = Instantiate(prefab, (Vector2)player.transform.position + setPos, Quaternion.identity);
+                GameObject search = Instantiate(searchPrefab, (Vector2)player.transform.position + setPos, Quaternion.identity);
+                search.GetComponent<FishSearcher>().SetFish(fish);
                 timer = 0;
             }
         }

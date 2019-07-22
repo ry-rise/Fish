@@ -7,6 +7,33 @@ public class FishSearcher : MonoBehaviour
     private PlayerControl playerFish;
     private BaseEnemyAI parent;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        //parent = transform.parent.GetComponent<BaseEnemyAI>();
+        mobFish = new List<BaseEnemyAI>();
+        playerFish = null;
+    }
+
+    public void SetFish(GameObject fish)
+    {
+        parent = fish.GetComponent<BaseEnemyAI>();
+        ((FishAI)parent).SetFishSearcher(this);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (parent != null)
+        {
+            mobFish.RemoveAll(a => a == null);
+            transform.position = parent.transform.position;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public Vector2 LargeTargetPosition
     {
         get
@@ -20,6 +47,8 @@ public class FishSearcher : MonoBehaviour
             }
             foreach (BaseEnemyAI it in mobFish)
             {
+                if (it == null) continue;
+                if (!it.IsPoped) continue;
                 if (parent.Level > it.Level) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if(dis > cDis)
@@ -45,6 +74,8 @@ public class FishSearcher : MonoBehaviour
             }
             foreach (BaseEnemyAI it in mobFish)
             {
+                if (it == null) continue;
+                if (!it.IsPoped) continue;
                 if (parent.Level < it.Level) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if (dis > cDis)
@@ -93,21 +124,6 @@ public class FishSearcher : MonoBehaviour
             return false;
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        parent = transform.parent.GetComponent<BaseEnemyAI>();
-        mobFish = new List<BaseEnemyAI>();
-        playerFish = null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Fish")

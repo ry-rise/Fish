@@ -52,7 +52,7 @@ public class FishHitter : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fish")
         {
-            BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
+            BaseEnemyAI enemy = collision.GetComponent<BaseEnemyAI>();
             if (EatFish.Any(a => a == enemy))
             {
                 EatFish.Remove(enemy);

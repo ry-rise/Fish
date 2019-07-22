@@ -51,13 +51,13 @@ abstract public class BaseEnemyAI : MonoBehaviour
         else
         {
             Move();
-            if (rb.velocity.x < 0)
+            if (rb.velocity.x < 0 && 0 > transform.localScale.x)
             {
-                sprite.flipX = false;
+                transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
             }
-            else
+            else if (rb.velocity.x > 0 && 0 < transform.localScale.x)
             {
-                sprite.flipX = true;
+                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             }
         }
     }
@@ -67,10 +67,22 @@ abstract public class BaseEnemyAI : MonoBehaviour
     private void SizeChanger()
     {
         transform.localScale = new Vector2(1, 1) * (Level != 0 ? Level * 0.5f : 0.25f);
-        Transform children = GetComponentInChildren<Transform>();
-        foreach (Transform child in children)
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Fish")
         {
-            child.localScale = Vector2.one / (Level != 0 ? Level * 0.5f : 0.1f);
+            BaseEnemyAI enemy = collision.GetComponent<BaseEnemyAI>();
+            if (enemy.IsPoped)
+            {
+                int fishALev = enemy.Level;
+                int fishBLev = Level;
+                if (fishALev < fishBLev)
+                {
+                    Destroy(collision.gameObject);
+                }
+            }
         }
     }
 }

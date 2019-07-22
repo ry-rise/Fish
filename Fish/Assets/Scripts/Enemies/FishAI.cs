@@ -21,7 +21,11 @@ public class FishAI : BaseEnemyAI
         {
             direction = 1;
         }
-        fs = transform.Find("FishSearcher").GetComponent<FishSearcher>();
+    }
+
+    public void SetFishSearcher(FishSearcher fs)
+    {
+        this.fs = fs;
     }
 
     // Update is called once per frame
@@ -33,21 +37,29 @@ public class FishAI : BaseEnemyAI
     protected override void Move()
     {
         Vector2 move = new Vector2(direction, 0) * data.Speed;
-        if (fs.IsLargeTargeted)
+        if (fs != null)
         {
-            Vector2 target = fs.LargeTargetPosition;
-            Vector2 dir = (Vector2)transform.position - target;
-            move = dir * data.Speed;
-        }
-        else if (fs.IsSmallTargeted)
-        {
-            Vector2 target = fs.SmallTargetPosition;
-            Vector2 dir = target - (Vector2)transform.position;
-            move = dir * data.Speed;
+            if (fs.IsLargeTargeted)
+            {
+                Debug.Log("やばい");
+                Vector2 target = fs.LargeTargetPosition;
+                Vector2 dir = (Vector2)transform.position - target;
+                move = dir * data.Speed;
+            }
+            else if (fs.IsSmallTargeted)
+            {
+                Debug.Log("見つけた");
+                Vector2 target = fs.SmallTargetPosition;
+                Vector2 dir = target - (Vector2)transform.position;
+                move = dir * data.Speed;
+            }
         }
         //正規化
         float size = Mathf.Sqrt(move.x * move.x + move.y * move.y);
-        Vector2 e = move / size;
-        rb.velocity = e * data.Speed;
+        if (size != 0)
+        {
+            Vector2 e = move / size;
+            rb.velocity = e * data.Speed;
+        }
     }
 }

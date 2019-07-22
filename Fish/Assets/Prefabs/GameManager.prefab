@@ -53,7 +53,8 @@ MonoBehaviour:
   firstLevelUpSize: 10
   multipleA: 1.1
   multipleB: 15
-  cameraBasePosition: {x: 0, y: 0, z: 0}
+  cameraBasePosition: {x: 0, y: 0, z: -10}
+  ClearLevel: 5
 --- !u!114 &524816928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,17 +67,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495d49e83c377da4e92e5eb9b8ecba63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRange: 20
+  playerRange: 10
+  spawnTime: 10
+  searchPrefab: {fileID: 3041188675990135723, guid: e772af4c657f95c4b895f18dc1df164c,
+    type: 3}
   groups:
   - enemies:
     - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
-    - {fileID: 8615197255936266628, guid: c886d115c5e4d0c479334e6963d3369f, type: 3}
-    - {fileID: 8615197255936266628, guid: 0bb765a7dae937842a72e11b9afeba60, type: 3}
   - enemies:
     - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
-    - {fileID: 8615197255936266628, guid: c886d115c5e4d0c479334e6963d3369f, type: 3}
-    - {fileID: 8615197255936266628, guid: 0bb765a7dae937842a72e11b9afeba60, type: 3}
   - enemies:
     - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
-    - {fileID: 8615197255936266628, guid: c886d115c5e4d0c479334e6963d3369f, type: 3}
-    - {fileID: 8615197255936266628, guid: 0bb765a7dae937842a72e11b9afeba60, type: 3}
