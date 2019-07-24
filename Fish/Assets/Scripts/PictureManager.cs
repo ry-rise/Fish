@@ -11,8 +11,7 @@ public class PictureManager : MonoBehaviour
 
     private string[] nameList = null;
     private int number;
-
-    private List<string> typeList;
+    
     private List<int> amountList;
     private string path;
     [SerializeField]
@@ -25,10 +24,9 @@ public class PictureManager : MonoBehaviour
         if (File.Exists(path))
         {
             Data data = sal.LoadData(path);
-            typeList = data.Type;
             amountList = data.Amount;
             number = 0;
-            nameList = typeList.ToArray();
+            nameList = data.Type.ToArray();
             NamesChanger();
         }
     }
