@@ -8,13 +8,13 @@ public class GameManager : MonoBehaviour
 {
     //時間
     [SerializeField]
-    private Text timeText = null;
+    private Slider timeSlider = null;
     [SerializeField]
     private float timeMax = 100;
     private float time = 0;
     //ライフ
     [SerializeField]
-    private Text lifeText = null;
+    private Slider lifeSlider = null;
 
     [SerializeField]
     private float maxLife = 1;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     //レベル＆サイズ
     [SerializeField]
-    private Text levelText = null;
+    private Slider expSlider = null;
     [SerializeField]
     private float firstLevelUpSize = 10f;
     [SerializeField]
@@ -101,9 +101,8 @@ public class GameManager : MonoBehaviour
     {
         if (0 <= currentExp - NextExp)
         {
-            ++CurrentLevel;
-            player.SizeChanger();
             currentExp -= NextExp;
+            ++CurrentLevel;
         }
     }
 
@@ -112,9 +111,10 @@ public class GameManager : MonoBehaviour
         Life -= damage * Time.deltaTime;
     }
 
-    public void Eater(int level, string name)
+    public void Eater(int levelGap, string name)
     {
-        currentExp += (level + 1) * (level + 1);
+        float value = CurrentLevel + Mathf.Pow(2, levelGap);
+        currentExp += value;
         EatFishCounter(name);
     }
 
@@ -169,6 +169,14 @@ public class GameManager : MonoBehaviour
         {
             State = GameStatus.End;
         }
+        if (Life < maxLife)
+        {
+            Life += Time.deltaTime * 0.1f;
+        }
+        else if (Life > maxLife)
+        {
+            Life = maxLife;
+        }
     }
     private void EndGame()
     {
@@ -178,9 +186,9 @@ public class GameManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        timeText.text = $"Time:{Mathf.Floor(time)}";
-        lifeText.text = $"HP:{Life}";
-        levelText.text = $"NextEXP:{NextExp - currentExp}";
+        timeSlider.value = time / timeMax;
+        lifeSlider.value = Life / maxLife;
+        expSlider.value = currentExp / NextExp;
     }
 
     public void GameReset()

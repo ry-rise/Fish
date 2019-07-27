@@ -21,7 +21,6 @@ public class RankingManager : MonoBehaviour
         if (File.Exists(path))
         {
             Data data = sal.LoadData(path);
-            Debug.Log(data.Time.Count);
             timeList = data.Time;
             NamesChanger();
         }

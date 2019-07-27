@@ -17,7 +17,6 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        SizeChanger();
     }
 
     // Update is called once per frame
@@ -25,7 +24,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (manager.State == GameManager.GameStatus.Play)
         {
-            SizeChanger();
             MainControl();
         }
     }
@@ -39,11 +37,11 @@ public class PlayerControl : MonoBehaviour
         {
             if (getX < 0)
             {
-                transform.localScale = new Vector2(manager.CurrentLevel * 0.5f, transform.localScale.y);
+                transform.localScale = new Vector2(1, 1);
             }
             else if (getX > 0)
             {
-                transform.localScale = new Vector2(-1 * manager.CurrentLevel * 0.5f, transform.localScale.y);
+                transform.localScale = new Vector2(-1, 1);
             }
             rb.velocity += new Vector2(getX, getY) * addSpeed;
             //正規化
@@ -57,20 +55,6 @@ public class PlayerControl : MonoBehaviour
         else
         {
             rb.velocity *= 0.95f;
-        }
-    }
-
-    public void SizeChanger()
-    {
-        //ゲームマネージャーからレベルを見る
-        //Vector2 size = transform.localScale;
-        if (transform.localScale.x > 0)
-        {
-            transform.localScale = new Vector2(1, 1) * manager.CurrentLevel * 0.5f;
-        }
-        else
-        {
-            transform.localScale = new Vector2(-1, 1) * manager.CurrentLevel * 0.5f;
         }
     }
 }

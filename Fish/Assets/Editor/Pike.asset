@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pike
   m_EditorClassIdentifier: 
   fishName: "\u79CB\u5200\u9B5A"
-  minLevel: 0
-  maxLevel: 2
+  minLevel: 4
+  maxLevel: 5
   speed: 4

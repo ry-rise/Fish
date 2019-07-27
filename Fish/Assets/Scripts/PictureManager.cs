@@ -50,7 +50,8 @@ public class PictureManager : MonoBehaviour
     {
         if (File.Exists(path))
         {
-            number = (number + nameList.Length / names.Length - 1) % (int)Mathf.Ceil((float)nameList.Length / names.Length);
+            number = (number + (int)Mathf.Ceil((float)nameList.Length / names.Length) - 1) % (int)Mathf.Ceil((float)nameList.Length / names.Length);
+            Debug.Log(number);
             NamesChanger();
         }
     }

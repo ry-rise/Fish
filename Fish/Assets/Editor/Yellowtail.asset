@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Yellowtail
   m_EditorClassIdentifier: 
   fishName: "\u30D6\u30EA"
-  minLevel: 0
-  maxLevel: 2
+  minLevel: 7
+  maxLevel: 8
   speed: 3

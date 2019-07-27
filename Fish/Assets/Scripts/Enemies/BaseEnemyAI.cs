@@ -7,9 +7,11 @@ abstract public class BaseEnemyAI : MonoBehaviour
     [SerializeField]
     protected BaseFish data = null;
     public BaseFish Data { get { return data; } }
-    public int Level { get; protected set; }
+    public int LevelGap { get; protected set; }
 
-    protected GameObject player;
+    private Vector2 scale;
+
+    protected PlayerControl player;
 
     protected Rigidbody2D rb;
 
@@ -22,9 +24,9 @@ abstract public class BaseEnemyAI : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        Level = Random.Range(Data.MinLevel, Data.MaxLevel + 1);
+        player = GameObject.Find("Player").GetComponent<PlayerControl>();
+        LevelGap = Random.Range(Data.MinLevel, Data.MaxLevel + 1) - player.Level;
         SizeChanger();
-        player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
@@ -53,11 +55,11 @@ abstract public class BaseEnemyAI : MonoBehaviour
             Move();
             if (rb.velocity.x < 0)
             {
-                transform.localScale = new Vector2(Level != 0 ? Level * 0.5f : 0.25f, transform.localScale.y);
+                transform.localScale = scale;
             }
             else if (rb.velocity.x > 0)
             {
-                transform.localScale = new Vector2((Level != 0 ? Level * 0.5f : 0.25f) * -1, transform.localScale.y);
+                transform.localScale = scale * new Vector2(-1, 1);
             }
         }
     }
@@ -66,7 +68,8 @@ abstract public class BaseEnemyAI : MonoBehaviour
 
     private void SizeChanger()
     {
-        transform.localScale = Vector2.one * (Level != 0 ? Level * 0.5f : 0.25f);
+        scale = Vector2.one * Mathf.Pow(1.25f, LevelGap);
+        transform.localScale = scale;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -76,8 +79,8 @@ abstract public class BaseEnemyAI : MonoBehaviour
             BaseEnemyAI enemy = collision.GetComponent<BaseEnemyAI>();
             if (enemy.IsPoped)
             {
-                int fishALev = enemy.Level;
-                int fishBLev = Level;
+                int fishALev = enemy.LevelGap;
+                int fishBLev = LevelGap;
                 if (fishALev < fishBLev)
                 {
                     Destroy(collision.gameObject);

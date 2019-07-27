@@ -40,7 +40,7 @@ public class FishSearcher : MonoBehaviour
         {
             Vector2 top = Vector2.zero;
             float dis = float.MaxValue;
-            if (null != playerFish && parent.Level < playerFish.Level)
+            if (null != playerFish && parent.LevelGap < 0)
             {
                 top = playerFish.transform.position;
                 dis = Vector2.Distance(transform.position, playerFish.transform.position);
@@ -49,7 +49,7 @@ public class FishSearcher : MonoBehaviour
             {
                 if (it == null) continue;
                 if (!it.IsPoped) continue;
-                if (parent.Level >= it.Level) continue;
+                if (parent.LevelGap >= it.LevelGap) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if(dis > cDis)
                 {
@@ -67,7 +67,7 @@ public class FishSearcher : MonoBehaviour
         {
             Vector2 top = Vector2.zero;
             float dis = float.MaxValue;
-            if (null != playerFish && parent.Level > playerFish.Level)
+            if (null != playerFish && parent.LevelGap > 0)
             {
                 top = playerFish.transform.position;
                 dis = Vector2.Distance(transform.position, playerFish.transform.position);
@@ -76,7 +76,7 @@ public class FishSearcher : MonoBehaviour
             {
                 if (it == null) continue;
                 if (!it.IsPoped) continue;
-                if (parent.Level <= it.Level) continue;
+                if (parent.LevelGap <= it.LevelGap) continue;
                 float cDis = Vector2.Distance(transform.position, it.transform.position);
                 if (dis > cDis)
                 {
@@ -92,7 +92,7 @@ public class FishSearcher : MonoBehaviour
     {
         get
         {
-            if (null != playerFish && parent.Level < playerFish.Level)
+            if (null != playerFish && parent.LevelGap < 0)
             {
                 return true;
             }
@@ -100,7 +100,7 @@ public class FishSearcher : MonoBehaviour
             {
                 foreach (BaseEnemyAI it in mobFish)
                 {
-                    if (parent.Level < it.Level) return true;
+                    if (parent.LevelGap < it.LevelGap) return true;
                 }
             }
             return false;
@@ -110,7 +110,7 @@ public class FishSearcher : MonoBehaviour
     {
         get
         {
-            if (null != playerFish && parent.Level > playerFish.Level)
+            if (null != playerFish && parent.LevelGap > 0)
             {
                 return true;
             }
@@ -118,7 +118,7 @@ public class FishSearcher : MonoBehaviour
             {
                 foreach (BaseEnemyAI it in mobFish)
                 {
-                    if (parent.Level > it.Level) return true;
+                    if (parent.LevelGap > it.LevelGap) return true;
                 }
             }
             return false;

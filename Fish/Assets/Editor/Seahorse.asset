@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e049dcd0ce1ca434889ca111249f93d1, type: 3}
   m_Name: Seahorse
   m_EditorClassIdentifier: 
-  fishName: "\u30BF\u30C4\u30CE\u30AA\u30C8\u30B7\u30B4"
-  minLevel: 0
-  maxLevel: 2
+  fishName: "\uFF80\uFF82\uFF89\uFF75\uFF84\uFF7C\uFF7A\uFF9E"
+  minLevel: 3
+  maxLevel: 4
   speed: 4

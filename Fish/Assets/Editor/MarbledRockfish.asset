@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MarbledRockfish
   m_EditorClassIdentifier: 
   fishName: "\u30AB\u30B5\u30B4"
-  minLevel: 0
-  maxLevel: 2
+  minLevel: 5
+  maxLevel: 6
   speed: 3

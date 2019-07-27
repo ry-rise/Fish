@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AtkaMackerel
   m_EditorClassIdentifier: 
   fishName: "\u30DB\u30C3\u30B1"
-  minLevel: 0
-  maxLevel: 2
+  minLevel: 6
+  maxLevel: 7
   speed: 3

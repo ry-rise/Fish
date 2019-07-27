@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SweetFish
   m_EditorClassIdentifier: 
   fishName: "\u9B8E"
-  minLevel: 0
+  minLevel: 2
   maxLevel: 3
   speed: 2

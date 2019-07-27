@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RiverPig
   m_EditorClassIdentifier: 
   fishName: "\u6CB3\u8C5A"
-  minLevel: 0
-  maxLevel: 2
+  minLevel: 5
+  maxLevel: 10
   speed: 2
