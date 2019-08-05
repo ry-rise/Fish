@@ -44,17 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fc32bc47cc5a04288298deb720aa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeText: {fileID: 0}
+  timeSlider: {fileID: 0}
   timeMax: 300
-  lifeText: {fileID: 0}
+  lifeSlider: {fileID: 0}
   maxLife: 3
   damage: 1
-  levelText: {fileID: 0}
+  expSlider: {fileID: 0}
   firstLevelUpSize: 10
-  multipleA: 1.1
-  multipleB: 15
+  multipleA: 1.00005
+  multipleB: 0.1
   cameraBasePosition: {x: 0, y: 0, z: -10}
-  ClearLevel: 5
+  ClearLevel: 17
 --- !u!114 &524816928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,13 +68,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRange: 10
-  spawnTime: 10
+  spawnTime: 2
+  enemyLimitNumber: 15
   searchPrefab: {fileID: 3041188675990135723, guid: e772af4c657f95c4b895f18dc1df164c,
     type: 3}
-  groups:
-  - enemies:
-    - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
-  - enemies:
-    - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
-  - enemies:
-    - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
+  fishPrefas:
+  - {fileID: 8615197255936266628, guid: 6c23d37b2adec46d48b4a0cf44040eb3, type: 3}
+  - {fileID: 8615197255936266628, guid: e7e1f7b28961b4a27b7e3e4e4fbcdeb1, type: 3}
+  - {fileID: 8615197255936266628, guid: 4a66fb06b0fe8a5488f5c4ea18206974, type: 3}
+  - {fileID: 8615197255936266628, guid: 1d8533e6e09b64b2ca892a451c49f508, type: 3}
+  - {fileID: 8615197255936266628, guid: 868fb21afe6f80d498b24db8bd3a8b09, type: 3}
+  - {fileID: 8615197255936266628, guid: 0759e638a23be3848baf6322995f71e3, type: 3}
+  - {fileID: 8615197255936266628, guid: da9672cf43fa548dba9e8277b07f5635, type: 3}
+  - {fileID: 8615197255936266628, guid: b00e6089d11a0442d9984157b69c97bc, type: 3}
+  - {fileID: 8615197255936266628, guid: 5dbcf9e19cb61454bb2ba88d42bcba0e, type: 3}
+  - {fileID: 8615197255936266628, guid: c54f12797b70e4023a052cdfccf48221, type: 3}

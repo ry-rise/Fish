@@ -155,17 +155,16 @@ public class GameManager : MonoBehaviour
     {
         CameraMove();
         UIUpdate();
-        /*float exeA = firstLevelUpSize;
+        float exeA = firstLevelUpSize;
         int result = 0;
-        for (int n = 0; n < ClearLevel; ++n)
+        for (int n = 0; n < ClearLevel - 1; ++n)
         {
-            for (int i = 0; i < n; ++i)
-            {
-                exeA *= multipleA;
-            }
             float exeB = CurrentLevel * multipleB;
             result += (int)((exeA + exeB) / 2);
-        }*/
+            exeA *= multipleA;
+        }
+        Debug.Log(result);
+        endExp = result;
         State = GameStatus.Play;
     }
     private void PlayGame()
@@ -206,7 +205,7 @@ public class GameManager : MonoBehaviour
     {
         timeSlider.value = time / timeMax;
         lifeSlider.value = Life / maxLife;
-        expSlider.value = currentExp / NextExp;
+        expSlider.value = resultExp / endExp;
     }
 
     public void GameReset()
