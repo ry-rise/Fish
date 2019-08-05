@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
 public class RankingManager : MonoBehaviour
@@ -19,9 +19,17 @@ public class RankingManager : MonoBehaviour
     private string path;
     [SerializeField]
     private SaveAndLoad sal = null;
+    [SerializeField]
+    private Button backToTitle=null;
+    [SerializeField]
+    private AudioSource pushButton=null;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
+    {
+        backToTitle.onClick.AddListener(BackToTitle);
+
+    }
+    private void Start()
     {
         path = $"{Application.persistentDataPath}\\saveData.json";
         if (File.Exists(path))
@@ -31,12 +39,6 @@ public class RankingManager : MonoBehaviour
             nameList = data.Name;
             NamesChanger();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void NamesChanger()
@@ -54,8 +56,9 @@ public class RankingManager : MonoBehaviour
         }
     }
 
-    public void BackToTitle()
+    private void BackToTitle()
     {
-        EditorSceneManager.LoadScene("Title");
+        pushButton.Play();
+        SceneManager.LoadScene("Title");
     }
 }

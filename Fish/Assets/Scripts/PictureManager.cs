@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
 public class PictureManager : MonoBehaviour
@@ -16,9 +16,22 @@ public class PictureManager : MonoBehaviour
     private string path;
     [SerializeField]
     private SaveAndLoad sal = null;
+    [SerializeField]
+    private Button backToTitle=null;
+    [SerializeField]
+    private Button backButton=null;
+    [SerializeField]
+    private Button nextButton=null;
+    [SerializeField]
+    private AudioSource pushSound=null;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
+    {
+        backToTitle.onClick.AddListener(BackToTitle);
+        backButton.onClick.AddListener(BackNames);
+        nextButton.onClick.AddListener(NextNames);
+    }
+    private void Start()
     {
         path = $"{Application.persistentDataPath}\\saveData.json";
         if (File.Exists(path))
@@ -31,14 +44,9 @@ public class PictureManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void NextNames()
     {
-        
-    }
-
-    public void NextNames()
-    {
+        pushSound.Play();
         if (File.Exists(path))
         {
             number = (number + 1) % (int)Mathf.Ceil((float)nameList.Length / names.Length);
@@ -46,8 +54,9 @@ public class PictureManager : MonoBehaviour
         }
     }
 
-    public void BackNames()
+    private void BackNames()
     {
+        pushSound.Play();
         if (File.Exists(path))
         {
             number = (number + (int)Mathf.Ceil((float)nameList.Length / names.Length) - 1) % (int)Mathf.Ceil((float)nameList.Length / names.Length);
@@ -71,8 +80,9 @@ public class PictureManager : MonoBehaviour
         }
     }
 
-    public void BackToTitle()
+    private void BackToTitle()
     {
-        EditorSceneManager.LoadScene("Title");
+        pushSound.Play();
+        SceneManager.LoadScene("Title");
     }
 }

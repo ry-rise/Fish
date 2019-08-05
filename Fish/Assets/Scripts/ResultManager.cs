@@ -23,9 +23,17 @@ public class ResultManager : MonoBehaviour
     private GameObject namePanel = null;
     private List<ScoreData> score = new List<ScoreData>();
     private ScoreData inputScore = null;  //-1の時は入力無し
-
-    public void Go()
+    [SerializeField]
+    private Button backToTitle = null;
+    [SerializeField]
+    private AudioSource pushSound=null;
+    private void Awake()
     {
+        backToTitle.onClick.AddListener(Go);
+    }
+    private void Go()
+    {
+        pushSound.Play();
         if (GameManager.GameClear && inputScore != null)
         {
             namePanel.SetActive(true);
@@ -49,7 +57,6 @@ public class ResultManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         //結果表示
@@ -100,7 +107,7 @@ public class ResultManager : MonoBehaviour
 
             score.Sort((a, b) => CompareByID(a.time, b.time));
             ScoreData myScore = score.Find(a => a.name == "");
-            if (score.Count < saveListAmount && score[score.Count -1] == myScore)
+            if (score.Count < saveListAmount && score[score.Count - 1] == myScore)
             {
                 return null;
             }
@@ -108,7 +115,7 @@ public class ResultManager : MonoBehaviour
         }
         return null;
     }
-    
+
     private void GameResultSave()
     {
         string path = $"{Application.persistentDataPath}\\saveData.json";
