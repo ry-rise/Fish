@@ -9,7 +9,13 @@ public class RankingManager : MonoBehaviour
     [SerializeField]
     private Text[] scoreText = null;
 
+    [SerializeField]
+    private Text[] nameText = null;//
+
     private List<float> timeList ;
+
+    private List<string> nameList; //
+
     private string path;
     [SerializeField]
     private SaveAndLoad sal = null;
@@ -22,6 +28,7 @@ public class RankingManager : MonoBehaviour
         {
             Data data = sal.LoadData(path);
             timeList = data.Time;
+            nameList = data.Name;
             NamesChanger();
         }
     }
@@ -38,6 +45,12 @@ public class RankingManager : MonoBehaviour
         {
             if (i >= timeList.Count) break;
             scoreText[i].text = timeList[i].ToString();
+        }
+
+        for (int i = 0; i < nameText.Length; ++i) //
+        {
+            if (i >= nameList.Count) break;
+            nameText[i].text = nameList[i].ToString();
         }
     }
 
