@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Whale
   m_EditorClassIdentifier: 
   fishName: "\u9BE8"
-  minLevel: 9
-  maxLevel: 10
+  minLevel: 10
+  maxLevel: 15
   speed: 1

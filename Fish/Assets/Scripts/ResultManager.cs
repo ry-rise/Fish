@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using System.Linq;
 
 
 public class ResultManager : MonoBehaviour
@@ -12,14 +13,66 @@ public class ResultManager : MonoBehaviour
     private int saveListAmount = 5;
     [SerializeField]
     private SaveAndLoad sal = null;
+    [SerializeField]
+    private Text resultText = null;
+    [SerializeField]
+    private InputField inputNameText = null;
+    [SerializeField]
+    private Text nameText = null;
+    [SerializeField]
+    private GameObject namePanel = null;
+    private List<ScoreData> score = new List<ScoreData>();
+    private ScoreData inputScore = null;  //-1の時は入力無し
 
     public void Go()
     {
-        SceneManager.LoadScene("Title");
+        if (GameManager.GameClear && inputScore != null)
+        {
+            namePanel.SetActive(true);
+        }
+        else
+        {
+            //記録保存
+            GameResultSave();
+            SceneManager.LoadScene("Title");
+        }
+    }
+
+    public void NameDecision()
+    {
+        if (nameText.text != "")
+        {
+            inputScore.name = nameText.text;
+            //記録保存
+            GameResultSave();
+            SceneManager.LoadScene("Title");
+        }
     }
 
     // Start is called before the first frame update
     void Start()
+    {
+        //結果表示
+        //クリアしたなら、時間
+        if (GameManager.GameClear)
+        {
+            resultText.text = "よくできました\n時間『" + GameManager.GetTime + "』";
+        }
+        //そうでないなら、レベルを表示する
+        else
+        {
+            resultText.text = "もう少し頑張りましょう";
+        }
+        inputScore = MyTimeRecord();
+        //食べた魚の数を表示する
+    }
+    public class ScoreData
+    {
+        public float time { get; set; }
+        public string name { get; set; }
+    }
+
+    private ScoreData MyTimeRecord()
     {
         string path = $"{Application.persistentDataPath}\\saveData.json";
 
@@ -34,19 +87,50 @@ public class ResultManager : MonoBehaviour
         }
         if (GameManager.GameClear)
         {
-            List<float> times = new List<float>();
-            times.Add(GameManager.GetTime);
+            score = new List<ScoreData>();
+            score.Add(new ScoreData());
+            score[0].time = GameManager.GetTime;
+            score[0].name = "";
             for (int i = 0; i < data.Time.Count; ++i)
             {
-                times.Add(data.Time[i]);
+                score.Add(new ScoreData());
+                score[score.Count - 1].time = data.Time[i];
+                score[score.Count - 1].name = data.Name[i];
             }
 
-            times.Sort((a, b) => CompareByID(a, b));
+            score.Sort((a, b) => CompareByID(a.time, b.time));
+            ScoreData myScore = score.Find(a => a.name == "");
+            if (score.Count < saveListAmount && score[score.Count -1] == myScore)
+            {
+                return null;
+            }
+            return myScore;
+        }
+        return null;
+    }
+    
+    private void GameResultSave()
+    {
+        string path = $"{Application.persistentDataPath}\\saveData.json";
+
+        Data data = null;
+        if (File.Exists(path))
+        {
+            data = sal.LoadData(path);
+        }
+        if (!File.Exists(path) || data == null || data.Type == null || data.Amount == null)
+        {
+            data = new Data();
+        }
+        if (GameManager.GameClear)
+        {
             //記録
             data.Time.Clear();
-            for (int i = 0; i < (times.Count < saveListAmount ? times.Count : saveListAmount); ++i)
+            data.Name.Clear();
+            for (int i = 0; i < (score.Count < saveListAmount ? score.Count : saveListAmount); ++i)
             {
-                data.Time.Add(times[i]);
+                data.Time.Add(score[i].time);
+                data.Name.Add(score[i].name);
             }
         }
         //取得した魚の記録
@@ -81,12 +165,6 @@ public class ResultManager : MonoBehaviour
             sal.SaveData(data, path);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private static int CompareByID(float a, float b)
     {
         if (a < b)
@@ -100,5 +178,10 @@ public class ResultManager : MonoBehaviour
         }
 
         return 0;
+    }
+
+    public void InputName()
+    {
+        nameText.text = inputNameText.text;
     }
 }

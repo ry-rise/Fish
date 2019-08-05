@@ -25,4 +25,5 @@ public class Data
     public List<string> Type = new List<string>();
     public List<int> Amount = new List<int>();
     public List<float> Time = new List<float>();
+    public List<string> Name = new List<string>();
 }

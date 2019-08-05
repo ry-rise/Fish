@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float timeMax = 100;
     private float time = 0;
+    private float progressTime = 0;
     //ライフ
     [SerializeField]
     private Slider lifeSlider = null;
@@ -113,7 +114,8 @@ public class GameManager : MonoBehaviour
 
     public void Eater(int levelGap, string name)
     {
-        float value = CurrentLevel + Mathf.Pow(2, levelGap);
+        float value = 3 + levelGap;
+        if (value < 0) value = 0;
         currentExp += value;
         EatFishCounter(name);
     }
@@ -156,6 +158,7 @@ public class GameManager : MonoBehaviour
         CameraMove();
         LevelUp();
         time -= Time.deltaTime;
+        progressTime += Time.deltaTime;
         UIUpdate();
         if (time <= 0)
         {
@@ -200,7 +203,7 @@ public class GameManager : MonoBehaviour
 
     public void GameRecord()
     {
-        GetTime = time;
+        GetTime = progressTime;
         GetEatFishes = eatFishes;
         GetEatFishTypes = eatFishTypes;
         LastLevel = CurrentLevel;

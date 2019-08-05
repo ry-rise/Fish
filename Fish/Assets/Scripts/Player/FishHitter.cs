@@ -24,11 +24,11 @@ public class FishHitter : MonoBehaviour
         Damage();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.tag == "Fish")
+        if (collider.gameObject.tag == "Fish")
         {
-            BaseEnemyAI enemy = collision.transform.root.GetComponent<BaseEnemyAI>();
+            BaseEnemyAI enemy = collider.transform.root.GetComponent<BaseEnemyAI>();
             int fishALev = enemy.LevelGap;
             if (fishALev < 0)
             {
@@ -47,11 +47,11 @@ public class FishHitter : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.gameObject.tag == "Fish")
+        if (collider.gameObject.tag == "Fish")
         {
-            BaseEnemyAI enemy = collision.GetComponent<BaseEnemyAI>();
+            BaseEnemyAI enemy = collider.GetComponent<BaseEnemyAI>();
             if (EatFish.Any(a => a == enemy))
             {
                 EatFish.Remove(enemy);
