@@ -74,7 +74,7 @@ abstract public class BaseEnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Fish")
+        if (IsPoped && collision.gameObject.tag == "Fish")
         {
             BaseEnemyAI enemy = collision.GetComponent<BaseEnemyAI>();
             if (enemy.IsPoped)

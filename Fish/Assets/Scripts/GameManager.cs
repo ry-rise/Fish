@@ -35,14 +35,17 @@ public class GameManager : MonoBehaviour
     private float currentExp;
     public int CurrentLevel { get; private set; }
 
+    private float endExp = 0;
+    private float resultExp = 0;
+
     private PlayerControl player;
     private Camera mainCamera;
 
     [SerializeField]
     private Vector3 cameraBasePosition = Vector3.zero;
 
-    private List<string> eatFishTypes;
-    private Dictionary<string, int> eatFishes;
+    private List<string> eatFishTypes = new List<string>();
+    private Dictionary<string, int> eatFishes = new Dictionary<string, int>();
 
     public static float GetTime = 0;//時間
     public static List<string> GetEatFishTypes = new List<string>(); //食べた魚の名前
@@ -117,6 +120,7 @@ public class GameManager : MonoBehaviour
         float value = 3 + levelGap;
         if (value < 0) value = 0;
         currentExp += value;
+        resultExp += value;
         EatFishCounter(name);
     }
 
@@ -151,6 +155,17 @@ public class GameManager : MonoBehaviour
     {
         CameraMove();
         UIUpdate();
+        /*float exeA = firstLevelUpSize;
+        int result = 0;
+        for (int n = 0; n < ClearLevel; ++n)
+        {
+            for (int i = 0; i < n; ++i)
+            {
+                exeA *= multipleA;
+            }
+            float exeB = CurrentLevel * multipleB;
+            result += (int)((exeA + exeB) / 2);
+        }*/
         State = GameStatus.Play;
     }
     private void PlayGame()
