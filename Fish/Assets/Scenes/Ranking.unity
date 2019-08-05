@@ -681,13 +681,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 1
 --- !u!222 &657332167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1220,9 +1220,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PLname
-
-'
+  m_Text: "\u3054\u3046\u3084"
 --- !u!222 &878017073
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1387,13 +1385,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 4
 --- !u!222 &1147857746
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1730,9 +1728,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PLname
-
-'
+  m_Text: "\u3054\u3046\u3084"
 --- !u!222 &1233307330
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1890,9 +1886,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PLname
-
-'
+  m_Text: "\u3054\u3046\u3084"
 --- !u!222 &1448289087
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2201,13 +2195,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 2
 --- !u!222 &1619213843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2286,9 +2280,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PLname
-
-'
+  m_Text: "\u3054\u3046\u3084"
 --- !u!222 &1721836074
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2361,13 +2353,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 3
 --- !u!222 &1774643040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2564,9 +2556,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PLname
-
-'
+  m_Text: "\u3088\u306D\u304F\u3089"
 --- !u!222 &1948215468
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2639,13 +2629,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 5
 --- !u!222 &1962236021
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2690,6 +2680,7 @@ MonoBehaviour:
   - {fileID: 255688339}
   - {fileID: 224873278}
   - {fileID: 1231869636}
+  nameText: []
   sal: {fileID: 1999577406}
 --- !u!4 &1999577405
 Transform:
