@@ -2680,7 +2680,12 @@ MonoBehaviour:
   - {fileID: 255688339}
   - {fileID: 224873278}
   - {fileID: 1231869636}
-  nameText: []
+  nameText:
+  - {fileID: 1448289086}
+  - {fileID: 1948215467}
+  - {fileID: 1721836073}
+  - {fileID: 1233307329}
+  - {fileID: 878017072}
   sal: {fileID: 1999577406}
 --- !u!4 &1999577405
 Transform:
