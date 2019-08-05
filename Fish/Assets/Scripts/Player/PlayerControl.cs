@@ -20,7 +20,6 @@ public class PlayerControl : MonoBehaviour
     private GameObject rightWall = null;
     [SerializeField]
     private GameObject leftWall = null;
-
     public enum HitDirection
     {
         None = 0,
