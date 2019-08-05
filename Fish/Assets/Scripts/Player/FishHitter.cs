@@ -8,6 +8,8 @@ public class FishHitter : MonoBehaviour
     public List<BaseEnemyAI> EatFish { get; private set; }
     public List<BaseEnemyAI> DamageFish { get; private set; }
     private GameManager gameManager;
+    [SerializeField]
+    private AudioSource audio = null;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +74,7 @@ public class FishHitter : MonoBehaviour
         {
             if (!EatFish[i].IsPoped) continue;
             gameManager.Eater(EatFish[i].LevelGap, EatFish[i].Data.FishName);
+            audio.Play();
             Destroy(EatFish[i].gameObject);
         }
     }
