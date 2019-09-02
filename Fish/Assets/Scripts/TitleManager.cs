@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource pushSound;
-    [SerializeField] private Button StartButton;
-    [SerializeField] private Button PictureBookButton;
-    [SerializeField] private Button RankingButton;
+    [SerializeField] private AudioSource pushSound = null;
+    [SerializeField] private Button StartButton = null;
+    [SerializeField] private Button PictureBookButton = null;
+    [SerializeField] private Button RankingButton = null;
     private void Awake()
     {
         StartButton.onClick.AddListener(pushSound.Play);

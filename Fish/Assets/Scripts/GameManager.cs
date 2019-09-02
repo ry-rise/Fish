@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     //時間
@@ -163,7 +163,6 @@ public class GameManager : MonoBehaviour
             result += (int)((exeA + exeB) / 2);
             exeA *= multipleA;
         }
-        Debug.Log(result);
         endExp = result;
         State = GameStatus.Play;
     }
@@ -198,7 +197,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         GameRecord();
-        EditorSceneManager.LoadScene("Result");   
+        SceneManager.LoadScene("Result");   
     }
 
     public void UIUpdate()

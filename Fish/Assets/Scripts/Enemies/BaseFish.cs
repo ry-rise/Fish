@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
 public class BaseFish : ScriptableObject
 {
     //魚の名前
@@ -20,6 +19,8 @@ public class BaseFish : ScriptableObject
     [SerializeField]
     private float speed = 1;
     public float Speed { get { return speed; } }
+
+#if UNITY_EDITOR
     //ツール化
     [MenuItem("Tool/Create Fish")]
     static void CreateAsset()
@@ -29,4 +30,5 @@ public class BaseFish : ScriptableObject
         AssetDatabase.CreateAsset(fishData, "Assets/Editor/Fish.asset");
         AssetDatabase.Refresh();
     }
+#endif
 }
